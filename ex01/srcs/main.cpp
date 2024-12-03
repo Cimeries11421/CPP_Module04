@@ -4,22 +4,22 @@
 
 int main()
 {
-	 Cat	*Ori = new Cat("Fish");
-	 Cat	*Milo = new Cat("Chicken");
+	Cat	*Ori = new Cat("Fish");
+	Cat	*Milo = new Cat("Coucou");
 
 	for	(int i = 0; i < 100; i++)
-	{
-		std::cout << (*Ori->getBrain().getIdea(i)) << std::endl;
-		std::cout << (*Milo->getBrain().getIdea(i)) << std::endl;
-	}
+		std::cout << (*(dynamic_cast<Cat *>(Ori)->getBrain().getIdea(i))) << std::endl;
+	for	(int i = 0; i < 100; i++)
+		std::cout << (*(dynamic_cast<Cat *>(Milo)->getBrain().getIdea(i))) << std::endl;
 
-	Milo = Ori;
+	*Milo = *Ori;
+
 	std::cout << "\n " << std::endl;
 	for	(int i = 0; i < 100; i++)
-	{
-		std::cout << (*Ori->getBrain().getIdea(i)) << std::endl;
-		std::cout << (*Milo->getBrain().getIdea(i)) << std::endl;
-	}
+		std::cout << (*(dynamic_cast<Cat *>(Ori)->getBrain().getIdea(i))) << std::endl;
+	for	(int i = 0; i < 100; i++)
+		std::cout << (*(dynamic_cast<Cat *>(Milo)->getBrain().getIdea(i))) << std::endl;	
+
 	delete Ori;
 	delete Milo;
 }

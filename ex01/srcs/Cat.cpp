@@ -1,29 +1,30 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal("Cat"), _brain(new Brain)
 {
 	std::cout << "Cat Default constructor called" << std::endl;
-	this->_type = "Cat";
-	this->_brain = new Brain();
+	// this->_type = "Cat";
+	// this->_brain = new Brain();
 }
 
-Cat::Cat(std::string idea)
+Cat::Cat(std::string idea) : Animal("Cat"), _brain(new Brain(std::string(idea)))
 {
-	std::cout << "Cat Default constructor called" << std::endl;
-	this->_type = "Cat";
-	this->_brain = new Brain(std::string(idea));
+	std::cout << "Cat Parameteric constructor called" << std::endl;
+	// this->_type = "Cat";
+	// this->_brain = new Brain(std::string(idea));
 }
 
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other) : Animal(other), _brain(NULL)
 {
 	std::cout << "Cat Copy constructor called" << std::endl;
+	// (void)other;
 	*this = other;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat destructor called" << std::endl;
 	delete this->_brain;
+	std::cout << "Cat destructor called" << std::endl;
 }
 
 Cat	&Cat::operator=(const Cat &other)
@@ -31,9 +32,8 @@ Cat	&Cat::operator=(const Cat &other)
 	if (this != &other)
 	{
 		this->_type = other._type;
-		if (this->_brain)
-			delete this->_brain;
-		this->_brain = new Brain(other.getBrain());
+		delete this->_brain;
+		this->_brain = new Brain(*other._brain);
 	}
 	return (*this);
 }
