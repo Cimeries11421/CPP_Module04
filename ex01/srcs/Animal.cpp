@@ -23,6 +23,7 @@ Animal::~Animal()
 
 Animal	&Animal::operator=(const Animal &other)
 {
+	std::cout << "PARENT" << std::endl;
 	if (this != &other)
 	{
 		this->_type = other._type;

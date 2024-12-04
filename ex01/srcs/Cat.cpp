@@ -1,23 +1,20 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("Cat"), _brain(new Brain)
+Cat::Cat() : Animal("Cat")
 {
 	std::cout << "Cat Default constructor called" << std::endl;
-	// this->_type = "Cat";
-	// this->_brain = new Brain();
+	this->_brain = new Brain();
 }
 
-Cat::Cat(std::string idea) : Animal("Cat"), _brain(new Brain(std::string(idea)))
+Cat::Cat(const std::string &idea) : Animal("Cat")
 {
-	std::cout << "Cat Parameteric constructor called" << std::endl;
-	// this->_type = "Cat";
-	// this->_brain = new Brain(std::string(idea));
+	std::cout << "Cat Parameterized constructor called" << std::endl;
+	this->_brain = new Brain (std::string(idea)); //not in init for order
 }
 
 Cat::Cat(const Cat &other) : Animal(other), _brain(NULL)
 {
 	std::cout << "Cat Copy constructor called" << std::endl;
-	// (void)other;
 	*this = other;
 }
 
@@ -29,6 +26,8 @@ Cat::~Cat()
 
 Cat	&Cat::operator=(const Cat &other)
 {
+
+	std::cout << "ENFANT" << std::endl;
 	if (this != &other)
 	{
 		this->_type = other._type;

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#define GREEN "\x1b[32m"
+#define RESET "\001\x1b[0m\002"
 
 class	Animal
 {
