@@ -21,9 +21,10 @@ class	Character : public ICharacter
 		//Getter
 		std::string const	&getName(void) const;
 		//Member functions
-//		void	equip(AMateria *m):
-//		void	unequipe(int idx);
-//		void	use(int	idx, ICharacter	&target);
+		void	equip(AMateria *m);
+		void	unequip(int idx);
+		void	use(int	idx, ICharacter	&target);
+		int		checkClone(AMateria *materia);
 };
 
 #endif
