@@ -2,7 +2,7 @@ NAME = ex01
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Iincludes -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -Iincludes -std=c++98
 
 SRCS = main.cpp \
 	   Animal.cpp \

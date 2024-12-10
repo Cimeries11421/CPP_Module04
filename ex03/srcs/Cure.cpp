@@ -1,7 +1,7 @@
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("Cure")
+Cure::Cure() : AMateria("cure")
 {
 	std::cout << "Cure Default constructor called" << std::endl;
 }

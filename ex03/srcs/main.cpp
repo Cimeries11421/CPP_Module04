@@ -1,42 +1,67 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "Character.hpp"
+#include "MateriaSource.hpp"
 #include <iostream>
 
 int main(void)
 {
 	//peut pas utiliser une classe abtraite dans la stack, mais on peut utiliser un pointeur
-	//Toutes les fonctions abtraite doivent etre redefinis sinon pas de compilation
-	AMateria	*ice	= new Ice();
-	AMateria	*cure	= new Cure();
-	AMateria	*cure2	= new Cure();
-	ICharacter	*WOL	= new Character("G'raha tia");
-	ICharacter	*NPC	= new Character;
-	
-	WOL->equip(ice);
-	WOL->equip(cure);
-	WOL->equip(cure2);
-	WOL->equip(cure);
-	WOL->equip(cure);
-	WOL->use(0, *NPC);
-	WOL->use(1, *NPC);
-	WOL->use(2, *NPC);
-	WOL->use(6, *NPC);
+	//Toutes les fonctions abtraite doivent etre redefinis sinon pas de compilation, l'interface 
+	//force la redefinition des fonctions dans l'interface
+	AMateria		*ice	= new Ice();
+	  AMateria		*cure	= new Cure();
+	  IMateriaSource	*src	= new MateriaSource();
+	  ICharacter		*WOL	= new Character("G'raha tia");
+	  ICharacter		*NPC	= new Character;
 
-	ICharacter	*copy = new Character(*dynamic_cast <Character *>(WOL));
-		
-	
-	
+
+	  src->learnMateria(ice);
+	  src->learnMateria(cure);
+
+
+	  AMateria	*iceCreated = src->createMateria("ice");
+	  AMateria	*cureCreated = src->createMateria("cure");
+
+
+	  WOL->equip(iceCreated);
+	  WOL->equip(cureCreated);
+	  WOL->use(0, *NPC);
+	  WOL->use(1, *NPC);
+
+	  WOL->unequip(0);
+	  WOL->use(0, *NPC);
+	  WOL->equip(iceCreated);
+	  WOL->use(0, *NPC);
+
+	//	ICharacter	*copy = new Character(*dynamic_cast <Character *>(WOL));
+
 	//Character	*test = new Character();
 	//Character	*test2 = new Character(*test);
 
-	copy->use(0, *NPC);
-	copy->use(0, *NPC);
-	copy->use(0, *NPC);
-	copy->use(0, *NPC);
-	copy->use(0, *NPC);
-	copy->use(0, *NPC);
-	copy->use(1, *NPC);
-	copy->use(2, *NPC);
+	delete	src;
+	delete	WOL;
+	delete	NPC;
 
+	return (0);
+
+/*	MateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete bob;
+	delete me;
+	delete src;
+	return 0;*/
 }

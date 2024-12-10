@@ -7,8 +7,10 @@
 class	Character : public ICharacter
 {
 	private:
-		std::string	_name;
-		AMateria	*_inventory[4];
+		std::string		_name;
+		AMateria		*_inventory[4];
+		int				_capacity;
+		AMateria		**_ground;
 	public:
 		//construtors
 		Character();
@@ -25,6 +27,7 @@ class	Character : public ICharacter
 		void	unequip(int idx);
 		void	use(int	idx, ICharacter	&target);
 		int		checkClone(AMateria *materia);
+		void	putOnGround(AMateria *materia);
 };
 
 #endif

@@ -1,10 +1,13 @@
 #ifndef MATERIASOURCE
 #define MATERIASOURCE
 
-class	MateriaSource
+#include "IMateriaSource.hpp"
+#include "AMateria.hpp"
+
+class	MateriaSource : public IMateriaSource
 {
 	private :
-		AMateria		*_tab[4];
+		AMateria		*_source[4];
 	public :
 		MateriaSource();
 		~MateriaSource();

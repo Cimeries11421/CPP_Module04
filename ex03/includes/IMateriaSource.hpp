@@ -1,6 +1,9 @@
 #ifndef	IMATERIASOURCE
 #define IMATERIASOURCE
 
+#include <string>
+class	AMateria;
+
 class IMateriaSource
 {
 	public:

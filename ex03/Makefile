@@ -2,13 +2,14 @@ NAME = ex03
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Iincludes -std=c++98 -g3
+CXXFLAGS = -Wall -Wextra -Werror -Iincludes -std=c++98
 
 SRCS = main.cpp \
 	   AMateria.cpp \
 	   Cure.cpp \
 	   Ice.cpp \
 	   Character.cpp \
+	   MateriaSource.cpp \
 
 SRC = $(addprefix srcs/, $(SRCS))
 
