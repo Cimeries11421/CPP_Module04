@@ -26,8 +26,6 @@ Dog::~Dog()
 
 Dog	&Dog::operator=(const Dog &other)
 {
-
-	std::cout << "ENFANT" << std::endl;
 	if (this != &other)
 	{
 		this->_type = other._type;
@@ -39,7 +37,7 @@ Dog	&Dog::operator=(const Dog &other)
 
 void	Dog::makeSound(void) const
 {
-	std::cout << this->_type << " : Moew Moew" << std::endl;
+	std::cout << this->_type << " : Woof Woof" << std::endl;
 }
 
 Brain	&Dog::getBrain(void) const

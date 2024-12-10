@@ -26,8 +26,6 @@ Cat::~Cat()
 
 Cat	&Cat::operator=(const Cat &other)
 {
-
-	std::cout << "ENFANT" << std::endl;
 	if (this != &other)
 	{
 		this->_type = other._type;
@@ -39,7 +37,7 @@ Cat	&Cat::operator=(const Cat &other)
 
 void	Cat::makeSound(void) const
 {
-	std::cout << this->_type << " : Moew Moew" << std::endl;
+	std::cout << this->_type << " : Meow Meow" << std::endl;
 }
 
 Brain	&Cat::getBrain(void) const
