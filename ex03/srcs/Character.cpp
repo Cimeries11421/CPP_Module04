@@ -6,9 +6,6 @@ Character::Character() : _name("PNJ")
 	std::cout << "A PNJ is born" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-	this->_capacity = 1;
-	this->_ground = new AMateria*[this->_capacity];
-	this->_ground[0] = NULL;
 }
 
 Character::Character(const std::string name) : _name(name)
@@ -16,9 +13,6 @@ Character::Character(const std::string name) : _name(name)
 	std::cout << "A Warrior of light is born" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-	this->_capacity = 1;
-	this->_ground = new AMateria*[this->_capacity];
-	this->_ground[0] = NULL;
 }
 
 Character::Character(const Character &other) : _name(other._name)
@@ -29,9 +23,6 @@ Character::Character(const Character &other) : _name(other._name)
 Character::~Character()
 {
 	std::cout << this->_name << " is dead" << std::endl;
-	for (int i = 0; i < this->_capacity - 1; i++)
-		delete this->_ground[i];
-	delete[] this->_ground;
 	for (int i = 0; i < 4; i++)
 		delete this->_inventory[i];
 }
@@ -81,7 +72,7 @@ void	Character::unequip(int i)
 	{
 		if (this->_inventory[i] != NULL)
 		{
-			this->putOnGround(this->_inventory[i]);
+			this->_ground->putOnGround(this->_inventory[i]);
 			this->_inventory[i] = NULL;
 		}
 		else
@@ -130,26 +121,7 @@ int		Character::checkClone(AMateria *materia)
 	return (0);
 }
 
-void	Character::putOnGround(AMateria *materia)
+void	Character::setGround(Ground *ground)
 {
-	for(int i = 0; i < this->_capacity - 1; i++)
-	{
-		if (this->_ground[i] == NULL)
-		{
-			this->_ground[i] = materia;
-		}
-	}
-	this->_capacity++;
-	AMateria	**newGround = new AMateria*[this->_capacity];
-	for(int i = 0; i < this->_capacity - 1; i++)
-	{
-		if (this->_ground[i] != NULL)
-		{
-			newGround[i] = this->_ground[i];
-		}
-		else
-			newGround[i] = NULL;
-	}
-	delete[] this->_ground;
-	this->_ground = newGround;
+	this->_ground = ground;
 }

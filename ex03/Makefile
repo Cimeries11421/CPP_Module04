@@ -10,6 +10,7 @@ SRCS = main.cpp \
 	   Ice.cpp \
 	   Character.cpp \
 	   MateriaSource.cpp \
+	   Ground.cpp \
 
 SRC = $(addprefix srcs/, $(SRCS))
 
